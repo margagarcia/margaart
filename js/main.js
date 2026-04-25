@@ -5,6 +5,16 @@
 (function () {
   'use strict';
 
+  // ---- Image protection ----
+  document.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('.gallery-img, #lightbox-img, .lightbox-content')) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+
   // ---- Navigation ----
   const nav = document.getElementById('nav');
   const navToggle = document.getElementById('nav-toggle');
@@ -15,20 +25,42 @@
     nav.classList.toggle('scrolled', window.scrollY > 80);
   });
 
-  // Mobile menu toggle
-  navToggle.addEventListener('click', () => {
+  // Menu toggle (dropdown)
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     navToggle.classList.toggle('active');
     navLinks.classList.toggle('open');
-    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
   });
 
-  // Close mobile menu on link click
+  // Close menu on link click
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navToggle.classList.remove('active');
       navLinks.classList.remove('open');
-      document.body.style.overflow = '';
     });
+  });
+
+  // Contact form → mailto
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+      if (!name || !email || !message) return;
+      const subject = encodeURIComponent(`Inquiry from ${name}`);
+      const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+      window.location.href = `mailto:info@margagarcia.com?subject=${subject}&body=${body}`;
+    });
+  }
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (navLinks.contains(e.target) || navToggle.contains(e.target)) return;
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
   });
 
   // ---- Lightbox ----
@@ -114,6 +146,15 @@
     aboutInner.style.transform = 'translateY(30px)';
     aboutInner.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     observer.observe(aboutInner);
+  }
+
+  // Animate recognitions section
+  const recognitionsInner = document.querySelector('.recognitions-inner');
+  if (recognitionsInner) {
+    recognitionsInner.style.opacity = '0';
+    recognitionsInner.style.transform = 'translateY(30px)';
+    recognitionsInner.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(recognitionsInner);
   }
 
   // Animate contact section
