@@ -359,7 +359,7 @@ a {
   gap: 6rem;
   max-width: 1200px;
   width: 100%;
-  align-items: center;
+  align-items: start;
 }
 
 .about-image img {
@@ -368,6 +368,7 @@ a {
   aspect-ratio: 3 / 4;
   object-fit: cover;
   margin-left: auto;
+  margin-top: 5rem;
 }
 
 .about-text h2 {
