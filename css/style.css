@@ -738,7 +738,7 @@ a {
 
 @media (max-width: 768px) {
   .hero-bg {
-    background-position: 70% center;
+    background-position: 25% center;
   }
 
   .hero-title .hero-sep {
