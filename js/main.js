@@ -63,6 +63,21 @@
     navLinks.classList.remove('open');
   });
 
+  // Language dropdown
+  const langToggle = document.getElementById('lang-toggle');
+  const langMenu = document.getElementById('lang-menu');
+  if (langToggle && langMenu) {
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langMenu.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!langMenu.classList.contains('open')) return;
+      if (langMenu.contains(e.target) || langToggle.contains(e.target)) return;
+      langMenu.classList.remove('open');
+    });
+  }
+
   // ---- Lightbox ----
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
