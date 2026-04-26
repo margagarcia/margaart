@@ -142,6 +142,30 @@ a {
   opacity: 1;
 }
 
+.lang-switcher {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.lang-link {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.lang-link:hover {
+  opacity: 1;
+}
+
+.lang-link.active {
+  opacity: 1;
+  font-weight: 500;
+}
+
 .nav-toggle {
   display: block;
   background: none;
@@ -749,6 +773,19 @@ a {
   .hero-title .hero-line {
     display: block;
     margin: 0.4em 0;
+  }
+
+  .nav-actions {
+    gap: 0.6rem;
+  }
+
+  .lang-switcher {
+    gap: 0.4rem;
+  }
+
+  .lang-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
   }
 
   .gallery {
