@@ -85,7 +85,7 @@ a {
   top: 100%;
   right: 2.5rem;
   margin-top: 0.5rem;
-  background: rgba(58, 52, 46, 0.35);
+  background: rgba(58, 52, 46, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   display: flex;
@@ -738,7 +738,7 @@ a {
 
 @media (max-width: 768px) {
   .hero-bg {
-    background-position: center center;
+    background-position: 70% center;
   }
 
   .hero-title .hero-sep {
